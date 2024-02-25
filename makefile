@@ -22,11 +22,11 @@ $(TARGET): $(LATEST_MAIN) $(GCC_FILES)
 all: test count style
 
 test: $(TARGET)
-		printf "\rRunning $(FILE) ..."; \
-		sleep 2; \
-		printf "\r%$${COLUMNS}s\r"; \
-		@./$(TARGET)
-		@echo
+	@printf "\rRunning $(FILE) ..."; \
+	sleep 2; \
+	printf "\r%$${COLUMNS}s\r"; \
+	./$(TARGET)
+	@echo
 
 git:
 	@if [ -f .commit_msg ]; then \
@@ -43,29 +43,18 @@ clean:
 		rm -f $(TARGET)
 
 count:
-	@printf "\rLine count: \n";
-	@OUTPUT=$$(wc -l $(FILE)); \
+	@printf "Line count: \n"; \
+	OUTPUT=$$(wc -l $(FILE)); \
 	echo $$OUTPUT; \
 	sleep 3; \
-	printf "\033[1A"; \
-	printf "\r%$${COLUMNS}s\r"; \
-	printf "\033[1A"; \
-	printf "\r%$${COLUMNS}s\r";
-
+	tput cuu 1; \
+	tput el; \
+	tput cuu 1; \
+	tput el;
 
 style:
-	@printf "\rChecking $(FILE) for style errors:\n"
-	@sleep 1;
-	@printf "\r%$${COLUMNS}s\r";
-	@bash -c '\
+	@printf "\rChecking $(FILE) for style errors:\n";
+	@sleep 1; \
+	bash -c '\
 	OUTPUT=$$(betty $(FILE)); \
-	if [ -n "$$OUTPUT" ]; then \
-		echo -e "\n$$OUTPUT"; \
-	else \
-		echo "No errors"; \
-		sleep 1; \
-		printf "\033[1A"; \
-		printf "\r%$${COLUMNS}s\r"; \
-		printf "\033[1A"; \
-		printf "\r%$${COLUMNS}s\r"; \
-	fi'
+	echo -e "$$OUTPUT";'

@@ -12,7 +12,7 @@
 */
 void quick_sort(int *array, size_t size)
 {
-	quick_sort_helper(array, 0, size - 1, array, size);
+	quick_sort_helper(array, 0, size - 1, size);
 }
 
 /**
@@ -24,21 +24,19 @@ void quick_sort(int *array, size_t size)
  *				of the array that we want to sort.
  * @end_idx: the ending index of the portion of
  *			 of the array that we want to sort.
- * @r_array: pointer to the original array.
  * @size: the size of the array.
  *
  * Return: void.
 */
-void quick_sort_helper(int *array, int start_idx, int end_idx, int *r_array,
-						size_t size)
+void quick_sort_helper(int *array, int start_idx, int end_idx, size_t size)
 {
 	int pivot;
 
 	if (start_idx < end_idx)
 	{
-		pivot = partition(array, start_idx, end_idx, r_array, size);
-		quick_sort_helper(array, start_idx, pivot - 1, r_array, size);
-		quick_sort_helper(array, pivot + 1, end_idx, r_array, size);
+		pivot = partition(array, start_idx, end_idx, size);
+		quick_sort_helper(array, start_idx, pivot - 1, size);
+		quick_sort_helper(array, pivot + 1, end_idx, size);
 	}
 }
 
@@ -55,15 +53,12 @@ void quick_sort_helper(int *array, int start_idx, int end_idx, int *r_array,
  *				partition.
  * @end_idx: represents the ending index of the portion
  *			of the array that we want to partition.
- *
- * @r_array: pointer to the original array.
  * @size: size of the array.
  *
  * Return: the index of the pivot element in the array
  *			after partitioning.
 */
-int partition(int array[], int start_idx, int end_idx, int *r_array,
-				size_t size)
+int partition(int array[], int start_idx, int end_idx, size_t size)
 {
 	int j;
 	int pivot = array[end_idx];
@@ -74,32 +69,32 @@ int partition(int array[], int start_idx, int end_idx, int *r_array,
 		if (array[j] < pivot)
 		{
 			i++;
-			swap(&array[i], &array[j]);
-			if (i != j)
-			{
-				print_array(r_array, size);
-			}
+			q_swap(&array[i], &array[j], array, size);
 		}
 	}
-	swap(&array[i + 1], &array[end_idx]);
-	if (i + 1 != end_idx)
-	{
-		print_array(r_array, size);
-	}
+	q_swap(&array[i + 1], &array[end_idx], array, size);
 	return (i + 1);
 }
 
 /**
- * swap - function swaps 2 integers.
+ * q_swap - function swaps 2 integers.
  *
  * @a: pointer to the first integer to swap.
  * @b: pointer to the second integer to swap.
+ * @array: pointer to the array of integers.
+ * @size: size of the array.
  *
  * Return: void.
 */
-void swap(int *a, int *b)
+void q_swap(int *a, int *b, int *array, size_t size)
 {
-	int tmp = *a;
-	*a = *b;
-	*b = tmp;
+	int tmp;
+
+	if (*a != *b)
+	{
+		tmp = *a;
+		*a = *b;
+		*b = tmp;
+		print_array(array, size);
+	}
 }

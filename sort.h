@@ -39,11 +39,9 @@ void selection_sort(int *array, size_t size);
 
 /* 3-quick_sort.c */
 void quick_sort(int *array, size_t size);
-void quick_sort_helper(int *array, int start_idx, int end_idx, int *r_array,
-size_t size);
-int partition(int array[], int start_idx, int end_idx, int *r_array,
-size_t size);
-void swap(int *a, int *b);
+void quick_sort_helper(int *array, int start_idx, int end_idx, size_t size);
+int partition(int array[], int start_idx, int end_idx, size_t size);
+void q_swap(int *a, int *b, int *array, size_t size);
 
 
 #endif

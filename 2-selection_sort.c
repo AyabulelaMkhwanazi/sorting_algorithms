@@ -2,8 +2,8 @@
 
 /**
  * selection_sort - function sorts an array of integers
- *					in ascending order
- *					using 'Selection Sort' algorithm.
+ *			in ascending order
+ *			using 'Selection Sort' algorithm.
  *
  * @array: pointer to the array of integers.
  * @size: size of the array.

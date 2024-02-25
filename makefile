@@ -3,9 +3,9 @@ include update.mk
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=gnu89 -g
 TARGET = a
-SCRIPT = 0-main.c
+SCRIPT = 1-main.c
 
-FILE = 0-bubble_sort.c 
+FILE = 1-insertion_sort_list.c 
 COMPILE_SHELL = compile.sh
 GCC_FILES = $(shell bash $(COMPILE_SHELL))
 LATEST_MAIN = $(shell ls -t *-main.c | head -n 1)

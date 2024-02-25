@@ -37,4 +37,11 @@ void insertion_sort_list(listint_t **list);
 /* 2-selection_sort.c */
 void selection_sort(int *array, size_t size);
 
+/* 3-quick_sort.c */
+void quick_sort(int *array, size_t size);
+void quick_sort_helper(int *array, int start_idx, int end_idx);
+int partition(int array[], int start_idx, int end_idx);
+void swap(int *a, int *b);
+
+
 #endif

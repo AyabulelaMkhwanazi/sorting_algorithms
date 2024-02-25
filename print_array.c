@@ -21,19 +21,3 @@ void print_array(const int *array, size_t size)
     }
     printf("\n");
 }
-
-/**
- * swap - helper function swaps 2 integers.
- *
- * @ptr1: pointer to the first number
- * @ptr2: pointer to the second number
- *
- * Return: void
-*/
-void swap(int *ptr1, int *ptr2)
-{
-	int tmp = *ptr1;
-
-	*ptr1 = *ptr2;
-	*ptr2 = tmp;
-}

@@ -31,21 +31,21 @@ void selection_sort(int *array, size_t size)
 		}
 		if (index != i)
 		{
-			swap(&array[index], &array[i]);
+			s_swap(&array[index], &array[i]);
 			print_array(array, size);
 		}
 	}
 }
 
 /**
- * swap - helper function swaps 2 integers.
+ * s_swap - helper function swaps 2 integers.
  *
  * @ptr1: pointer to the first number
  * @ptr2: pointer to the second number
  *
  * Return: void
 */
-void swap(int *ptr1, int *ptr2)
+void s_swap(int *ptr1, int *ptr2)
 {
 	int tmp = *ptr1;
 

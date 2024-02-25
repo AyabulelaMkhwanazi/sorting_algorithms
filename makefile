@@ -5,7 +5,7 @@ CFLAGS = -Wall -Werror -Wextra -pedantic -std=gnu89 -g
 TARGET = a
 SCRIPT = 3-main.c
 
-FILE = 3-quick_sort.c 
+FILE = 3-quick_sort.c
 COMPILE_SHELL = compile.sh
 GCC_FILES = $(shell bash $(COMPILE_SHELL))
 LATEST_MAIN = $(shell ls -t *-main.c | head -n 1)

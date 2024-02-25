@@ -12,7 +12,7 @@
 */
 void quick_sort(int *array, size_t size)
 {
-	quick_sort_helper(array, 0, size - 1);
+	quick_sort_helper(array, 0, size - 1, array, size);
 }
 
 /**
@@ -24,18 +24,21 @@ void quick_sort(int *array, size_t size)
  *				of the array that we want to sort.
  * @end_idx: the ending index of the portion of
  *			 of the array that we want to sort.
+ * @r_array: pointer to the original array.
+ * @size: the size of the array.
  *
  * Return: void.
 */
-void quick_sort_helper(int *array, int start_idx, int end_idx)
+void quick_sort_helper(int *array, int start_idx, int end_idx, int *r_array,
+						size_t size)
 {
 	int pivot;
 
 	if (start_idx < end_idx)
 	{
-		pivot = partition(array, start_idx, end_idx);
-		quick_sort_helper(array, start_idx, pivot - 1);
-		quick_sort_helper(array, pivot + 1, end_idx);
+		pivot = partition(array, start_idx, end_idx, r_array, size);
+		quick_sort_helper(array, start_idx, pivot - 1, r_array, size);
+		quick_sort_helper(array, pivot + 1, end_idx, r_array, size);
 	}
 }
 
@@ -53,10 +56,14 @@ void quick_sort_helper(int *array, int start_idx, int end_idx)
  * @end_idx: represents the ending index of the portion
  *			of the array that we want to partition.
  *
+ * @r_array: pointer to the original array.
+ * @size: size of the array.
+ *
  * Return: the index of the pivot element in the array
  *			after partitioning.
 */
-int partition(int array[], int start_idx, int end_idx)
+int partition(int array[], int start_idx, int end_idx, int *r_array,
+				size_t size)
 {
 	int j;
 	int pivot = array[end_idx];
@@ -68,18 +75,16 @@ int partition(int array[], int start_idx, int end_idx)
 		{
 			i++;
 			swap(&array[i], &array[j]);
-
 			if (i != j)
 			{
-				print_array(array, end_idx - start_idx + 1);
+				print_array(r_array, size);
 			}
 		}
 	}
 	swap(&array[i + 1], &array[end_idx]);
-
 	if (i + 1 != end_idx)
 	{
-		print_array(array, end_idx - start_idx + 1);
+		print_array(r_array, size);
 	}
 	return (i + 1);
 }

@@ -18,22 +18,23 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
+/* print_array.c */
 void print_array(const int *array, size_t size);
+void swap(int *ptr1, int *ptr2);
+
+/* print_list.c */
 void print_list(const listint_t *list);
+void swap_nodes(listint_t **list, listint_t *node1, listint_t *node2);
 
 /* 0-bubble_sort.c */
 void bubble_sort(int *array, size_t size);
-void swap(int *ptr1, int *ptr2);
 
 listint_t *create_listint(const int *array, size_t size);
 
 /* 1-insertion_sort_list.c */
 void insertion_sort_list(listint_t **list);
-void swap_nodes(listint_t **list, listint_t *node1, listint_t *node2);
-
 
 /* 2-selection_sort.c */
 void selection_sort(int *array, size_t size);
-
 
 #endif

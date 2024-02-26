@@ -22,6 +22,12 @@ void shell_sort(int *array, size_t size)
 		return;
 	}
 
+	if (size == 1)
+	{
+		print_array(array, size);
+		return;
+	}
+
 	while (gap < size / 3)
 		gap = gap * 3 + 1;
 
@@ -41,14 +47,7 @@ void shell_sort(int *array, size_t size)
 				array[j] = tmp;
 			}
 		}
-		if (size > 1)
-		{
-			print_array(array, size);
-		}
-		gap /= 3;
-	}
-	if (size == 1)
-	{
 		print_array(array, size);
+		gap /= 3;
 	}
 }

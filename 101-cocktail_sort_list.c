@@ -57,7 +57,7 @@ void cocktail_sort_list(listint_t **list)
  * @node1: pointer to the first node.
  * @node2: pointer to the second node.
  *
- * Return: void. 
+ * Return: void.
 */
 void cocktail_swap_nodes(listint_t **list, listint_t *node1, listint_t *node2)
 {

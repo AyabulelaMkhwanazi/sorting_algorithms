@@ -47,9 +47,9 @@ void shell_sort(int *array, size_t size)
 				array[j] = tmp;
 			}
 		}
-		/* decrease the gap size by dividing it by 3 */
-		gap /= 3;
 		/* print the array each time you decrease the interval */
 		print_array(array, size);
+		/* decrease the gap size by dividing it by 3 */
+		gap /= 3;
 	}
 }

@@ -17,14 +17,8 @@ void shell_sort(int *array, size_t size)
 	size_t i, j;
 	int tmp;
 
-	if (array == NULL || size == 0)
+	if (array == NULL || size <= 1)
 	{
-		return;
-	}
-
-	if (size == 1)
-	{
-		print_array(array, size);
 		return;
 	}
 

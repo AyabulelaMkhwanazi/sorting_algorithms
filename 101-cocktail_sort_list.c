@@ -45,6 +45,10 @@ void cocktail_sort_list(listint_t **list)
 				swapped = 1;
 			}
 		}
+		if (!node)
+		{
+			break;
+		}
 	}
 }
 

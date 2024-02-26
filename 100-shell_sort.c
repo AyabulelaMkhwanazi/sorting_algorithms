@@ -17,16 +17,18 @@ void shell_sort(int *array, size_t size)
 	size_t i, j;
 	int tmp;
 
+	if (size == 1)
+	{
+		print_array(array, size);
+		return;
+	}
+
 	/* Calculate the largest Knuth sequence samller than size */
 	while (gap < size / 3)
 		gap = gap * 3 + 1;
 
 	while (gap > 0)
 	{
-		/**
-		 * iterate over each element starting from the
-		 * gap index
-		 */
 		for (i = gap; i < size; i++)
 		{
 			tmp = array[i];
@@ -38,10 +40,7 @@ void shell_sort(int *array, size_t size)
 			{
 				array[j] = array[j - gap];
 			}
-			/**
-			 * insert the temporary variable into its correct
-			 * position in the array
-			 */
+
 			if (j < size)  /* ensure j is not less than gap */
 			{
 				array[j] = tmp;

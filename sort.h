@@ -44,5 +44,11 @@ void quick_sort_helper(int *array, int start_idx, int end_idx, size_t size);
 int partition(int array[], int start_idx, int end_idx, size_t size);
 void q_swap(int *a, int *b, int *array, size_t size);
 
+/* 100-shell_sort.c */
+void shell_sort(int *array, size_t size);
+
+/* 101-cocktail_sort_list.c */
+void cocktail_sort_list(listint_t **list);
+void cocktail_swap_nodes(listint_t **list, listint_t *node1, listint_t *node2);
 
 #endif

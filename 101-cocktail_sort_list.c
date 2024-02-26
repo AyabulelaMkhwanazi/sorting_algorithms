@@ -12,42 +12,40 @@
 void cocktail_sort_list(listint_t **list)
 {
 	char swapped = 1;
-	listint_t *node;
+	listint_t *node = NULL;
 
-	if (!list || !*list)
+	if (list == NULL || *list == NULL)
 	{
 		return;
 	}
 
-	while (swapped)
+	while (swapped != 0)
 	{
 		swapped = 0;
-		for (node = *list; node && node->next; node = node->next)
+		for (node = *list; node != NULL && node->next != NULL; node = node->next)
 		{
 			if (node->n > node->next->n)
 			{
 				cocktail_swap_nodes(list, node, node->next);
-				print_list(*list);
+				node = node->prev;
+				print_list((const listint_t *)*list);
 				swapped = 1;
 			}
 		}
-		if (!swapped)
+		if (swapped == 0)
 		{
 			break;
 		}
 		swapped = 0;
-		for (node = node->prev; node && node->prev; node = node->prev)
+		for (; node != NULL && node->prev != NULL; node = node->prev)
 		{
-			if (node->prev->n > node->n)
+			if (node->n < node->prev->n)
 			{
 				cocktail_swap_nodes(list, node->prev, node);
-				print_list(*list);
+				node = node->next;
+				print_list((const listint_t *)*list);
 				swapped = 1;
 			}
-		}
-		if (!node)
-		{
-			break;
 		}
 	}
 }
@@ -63,14 +61,7 @@ void cocktail_sort_list(listint_t **list)
 */
 void cocktail_swap_nodes(listint_t **list, listint_t *node1, listint_t *node2)
 {
-	node1->next = node2->next;
-	if (node2->next)
-	{
-		node2->next->prev = node1;
-	}
-	node2->prev = node1->prev;
-
-	if (node1->prev)
+	if (node1->prev != NULL)
 	{
 		node1->prev->next = node2;
 	}
@@ -78,6 +69,12 @@ void cocktail_swap_nodes(listint_t **list, listint_t *node1, listint_t *node2)
 	{
 		*list = node2;
 	}
+	if (node2->next != NULL)
+	{
+		node2->next->prev = node1;
+	}
+	node2->prev = node1->prev;
+	node1->next = node2->next;
 	node2->next = node1;
 	node1->prev = node2;
 }
